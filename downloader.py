@@ -7,6 +7,7 @@ from tkinter import messagebox
 
 # it will give a list of all video links of a YouTube playlist
 def get_list_videos():
+    global playlist_item_by_id
     # clear ListBox
     list_box.delete(0, 'end')
 
