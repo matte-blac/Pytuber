@@ -17,7 +17,7 @@ def get_list_videos():
     if 'youtube' in playlistId.get():
         playlist_id = playlistId.get()[len(
             'https://www.youtube.com/playlist?list='
-        )]
+        ):]
     else:
         playlist_id = playlistId.get()
 
