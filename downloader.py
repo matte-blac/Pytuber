@@ -5,6 +5,34 @@ from pytube import YouTube
 from threading import Thread
 from tkinter import messagebox
 
+# it will give a list of all video links of a YouTube playlist
+def get_list_videos():
+    # clear ListBox
+    list_box.delete(0, 'end')
+
+    # create API object
+    api = Api(api_key='AIzaSyBpW0EF6rb4fXFNBSXGfBKTGkPpVXkmy6E')
+
+    if 'youtube' in playlistId.get():
+        playlist_id = playlistId.get()[len(
+            'https://www.youtube.com/playlist?list='
+        )]
+    else:
+        playlist_id = playlistId.get()
+
+    # get list of video links
+    playlist_item_by_id = api.get_playlist_items(
+        playlist_id=playlist_id, count=None, return_json=True
+        )
+    
+    # iterate through all video links and insert into listbox
+    for index, videoid in enumerate(playlist_item_by_id['items']):
+        list_box.insert(
+            END, f' {str(index+1)}. {videoid['[contentDetails]']['videoId']}'
+        )
+
+    download_start.config(state=NORMAL)
+
 # create object
 root = Tk()
 
