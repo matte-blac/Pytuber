@@ -33,6 +33,12 @@ def get_list_videos():
 
     download_start.config(state=NORMAL)
 
+# it is used for threading into tkinter
+def threading():
+    # call download_videos function
+    t1 = Thread(target=download_videos)
+    t1.start
+
 # create object
 root = Tk()
 
