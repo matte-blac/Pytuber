@@ -37,7 +37,29 @@ def get_list_videos():
 def threading():
     # call download_videos function
     t1 = Thread(target=download_videos)
-    t1.start
+    t1.start()
+
+# it is used for downloading youtube videos
+def download_videos():
+    download_start.config(state='disabled')
+    get_videos.config(state='disabled')
+
+    # iterate through all seleced videos
+    for i in list_box.curselection():
+        videoid = playlist_item_by_id['items'][i]['contentDetails']['videoId']
+
+        link = f'https://www.youtube.com/watch?v={videoid}'
+
+        yt_obj = YouTube(link)
+
+        filters = yt_obj.streams.filter(progressive=True, file_extension='mp4')
+
+        # download the highest quality video
+        filters.get_highest_resolution().download()
+
+    messagebox.showinfo('Success', 'Video Successfully Downloaded')
+    download_start.config(state='normal')
+    get_videos.config(state='normal')
 
 # create object
 root = Tk()
@@ -67,7 +89,7 @@ list_box.config(yscrollcommand=scrollbar.set)
 scrollbar.config(command=list_box.yview)
 
 # add download button
-download_start = Button(root, text='Download Start', state=DISABLED)
+download_start = Button(root, text='Download Start', command=threading, state=DISABLED)
 download_start.pack(pady=10)
 
 # execute tkinter
