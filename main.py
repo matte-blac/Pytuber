@@ -86,7 +86,7 @@ list_box.pack(expand=YES, fill="both")
 list_box.config(yscrollcommand=scrollbar.set) 
 scrollbar.config(command=list_box.yview) 
 
-download_start = Button(root, text="Download Start", 
+download_start = Button(root, text="Start Download", 
 						command=threading, state=DISABLED) 
 download_start.pack(pady=10) 
 
