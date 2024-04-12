@@ -12,7 +12,7 @@ def get_list_videos():
 	list_box.delete(0, 'end') 
 
 	# Create API Object 
-	api = Api(api_key='Enter API Key') 
+	api = Api(api_key='AIzaSyD1rGg-L5CzUyrKsO4wY48VbfxYGC3_RYc') 
 
 	if "youtube" in playlistId.get(): 
 		playlist_id = playlistId.get()[len( 
@@ -55,7 +55,7 @@ def download_videos():
 		# download the highest quality video 
 		filters.get_highest_resolution().download() 
 
-	messagebox.showinfo("Success", "Video Successfully downloaded") 
+	messagebox.showinfo("Success", "Playlist Successfully Downloaded") 
 	download_start.config(state="normal") 
 	get_videos.config(state="normal") 
 
