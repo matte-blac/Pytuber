@@ -1,9 +1,15 @@
 # Import Required Modules 
+import os
 from tkinter import *
 from pyyoutube import Api 
 from pytube import YouTube 
 from threading import Thread 
 from tkinter import messagebox 
+from dotenv import load_dotenv
+
+load_dotenv()
+
+API_KEY = os.getenv('API_KEY')
 
 
 def get_list_videos(): 
@@ -12,7 +18,7 @@ def get_list_videos():
 	list_box.delete(0, 'end') 
 
 	# Create API Object 
-	api = Api(api_key='AIzaSyD1rGg-L5CzUyrKsO4wY48VbfxYGC3_RYc') 
+	api = Api(API_KEY) 
 
 	if "youtube" in playlistId.get(): 
 		playlist_id = playlistId.get()[len( 
